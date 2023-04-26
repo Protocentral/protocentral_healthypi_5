@@ -1,0 +1,67 @@
+void ecsProcessData(char rxch)
+{
+  switch(ecs_rx_state)
+  {
+  case CESState_Init:
+    if (rxch==CES_CMDIF_PKT_START_1)
+      ecs_rx_state=CESState_SOF1_Found;
+    break;
+
+  case CESState_SOF1_Found:
+    if (rxch==CES_CMDIF_PKT_START_2)
+      ecs_rx_state=CESState_SOF2_Found;
+    else
+      ecs_rx_state=CESState_Init;                    //Invalid Packet, reset state to init
+    break;
+
+  case CESState_SOF2_Found:
+    //    println("inside 3");
+    ecs_rx_state = CESState_PktLen_Found;
+    CES_Pkt_Len = (int) rxch;
+    CES_Pkt_Pos_Counter = CES_CMDIF_IND_LEN;
+    CES_Data_Counter = 0;
+    break;
+
+  case CESState_PktLen_Found:
+    //    println("inside 4");
+    CES_Pkt_Pos_Counter++;
+    if (CES_Pkt_Pos_Counter < CES_CMDIF_PKT_OVERHEAD)  //Read Header
+    {
+      if (CES_Pkt_Pos_Counter==CES_CMDIF_IND_LEN_MSB)
+        CES_Pkt_Len = (int) ((rxch<<8)|CES_Pkt_Len);
+      else if (CES_Pkt_Pos_Counter==CES_CMDIF_IND_PKTTYPE)
+        CES_Pkt_PktType = (int) rxch;
+    } else if ( (CES_Pkt_Pos_Counter >= CES_CMDIF_PKT_OVERHEAD) && (CES_Pkt_Pos_Counter < CES_CMDIF_PKT_OVERHEAD+CES_Pkt_Len+1) )  //Read Data
+    {
+      if (CES_Pkt_PktType == 2)
+      {
+        CES_Pkt_Data_Counter[CES_Data_Counter++] = (char) (rxch);          // Buffer that assigns the data separated from the packet
+      }
+    } else  //All  and data received
+    {
+      if (rxch==CES_CMDIF_PKT_STOP)
+      {     
+        println(CES_Pkt_Len);
+        CES_Pkt_ECG_Counter[0] = CES_Pkt_Data_Counter[0];
+        CES_Pkt_ECG_Counter[1] = CES_Pkt_Data_Counter[1];
+        CES_Pkt_ECG_Counter[2] = CES_Pkt_Data_Counter[2];
+        CES_Pkt_ECG_Counter[3] = CES_Pkt_Data_Counter[3];
+
+
+# next make an outlet
+
+print("now sending data...")
+start_time = local_clock()
+sent_samples = 0
+while True:
+    elapsed_time = local_clock() - start_time
+    required_samples = int(srate * elapsed_time) - sent_samples
+    for sample_ix in range(required_samples):
+        # make a new random n_channels sample; this is converted into a
+        # pylsl.vectorf (the data type that is expected by push_sample)
+        mysample = [rand() for _ in range(n_channels)]
+        # now send it
+        outlet.push_sample(mysample)
+    sent_samples += required_samples
+    # now send it and wait for a bit before trying again.
+    time.sleep(0.01)
