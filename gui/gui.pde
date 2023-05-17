@@ -174,7 +174,7 @@ String strRecordStatus="Not Recording";
 
 
 //LSL Related Variables
-boolean lslEnabled=true;
+boolean lslEnabled=false;
 String strLSLStatus="Disabled";
 
 LSL.StreamOutlet outlet;
@@ -220,10 +220,15 @@ public void setup()
     plotECG.setPos(0,50);
     plotECG.setDim(width, (totalPlotsHeight/3)-10);
     plotECG.setBgColor(0);
-    plotECG.setBoxBgColor(0);
+    //plotECG.setBoxBgColor(0);
     plotECG.setLineColor(color(0, 255, 0));
     plotECG.setLineWidth(3);
-    plotECG.setMar(0,0,0,0);
+    plotECG.setMar(35,25,10,50);
+    
+    plotECG.getYAxis().setLineColor(color(255,255,255));
+    plotECG.getYAxis().setFontColor(color(255,255,255));
+    
+    plotECG.setYLim(-2.00,+4.00);
     
     plotPPG = new GPlot(this);
     plotPPG.setPos(0,(totalPlotsHeight/3+60));
@@ -313,6 +318,7 @@ public void draw()
     
     plotECG.beginDraw();
     plotECG.drawBackground();
+    plotECG.drawYAxis();
     plotECG.drawLines();
     plotECG.endDraw();
     
@@ -769,7 +775,7 @@ void ecsProcessData(char rxch)
         else spo2_leadOff = false;
             
         int data1 = CES_Pkt_ECG_Counter[0] | CES_Pkt_ECG_Counter[1]<<8 | CES_Pkt_ECG_Counter[2]<<16 | CES_Pkt_ECG_Counter[3]<<24; //reversePacket(CES_Pkt_ECG_Counter, CES_Pkt_ECG_Counter.length-1);
-        ecg = (double) data1;///(Math.pow(10, 3));
+        ecg = (double) data1/1000; //ECG from board is in uV, convert here to mV
 
         int data2 = CES_Pkt_Resp_Counter[0] | CES_Pkt_Resp_Counter[1] <<8 | CES_Pkt_Resp_Counter[2] <<16 | CES_Pkt_Resp_Counter[3] <<24; //reversePacket(CES_Pkt_ECG_Counter, CES_Pkt_ECG_Counter.length-1);
         resp = (double) data2;
