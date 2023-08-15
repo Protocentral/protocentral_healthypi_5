@@ -225,10 +225,10 @@ public void setup()
     plotECG.setLineWidth(3);
     plotECG.setMar(35,25,10,50);
     
-    plotECG.getYAxis().setLineColor(color(255,255,255));
-    plotECG.getYAxis().setFontColor(color(255,255,255));
+    //plotECG.getYAxis().setLineColor(color(255,255,255));
+    //plotECG.getYAxis().setFontColor(color(255,255,255));
     
-    plotECG.setYLim(-2.00,+4.00);
+    //plotECG.setYLim(-2.00,+4.00);
     
     plotPPG = new GPlot(this);
     plotPPG.setPos(0,(totalPlotsHeight/3+60));
