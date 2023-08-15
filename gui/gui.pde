@@ -42,7 +42,7 @@ import controlP5.*;
 
 import java.io.IOException;
 
-import edu.ucsd.sccn.LSL;
+//import edu.ucsd.sccn.LSL;
 
 ControlP5 cp5;
 
@@ -177,10 +177,10 @@ String strRecordStatus="Not Recording";
 boolean lslEnabled=false;
 String strLSLStatus="Disabled";
 
-LSL.StreamOutlet outlet;
-LSL.StreamOutlet outlet2;
+//LSL.StreamOutlet outlet;
+//LSL.StreamOutlet outlet2;
 
-public void enableLSL()
+/*public void enableLSL()
 {
   lslEnabled=true;
   strLSLStatus="LSL Status: Enabled";
@@ -194,7 +194,7 @@ public void disableLSL()
   strLSLStatus="Disabled";
   lblLSLStatus.setText(strLSLStatus);
   lblLSLStatus.setColorValue(color(255,0,0));
-}
+}*/
 
 public void setup() 
 {
@@ -276,9 +276,9 @@ public void setup()
       checkForExternalStorage();
     }
     
-    enableLSL();
+    //enableLSL();
     
-    if(lslEnabled)
+    /*if(lslEnabled)
     {
       LSL.StreamInfo info = new LSL.StreamInfo("HealthyPi","ECG,PPG Red, PPG IR",3,125,LSL.ChannelFormat.int32,"1234567");
       try {
@@ -287,7 +287,7 @@ public void setup()
       } catch (Exception e)
       {
       }
-    }
+    }*/
 }
 
 public void draw() 
@@ -685,7 +685,7 @@ void sendLSL(float m_ecg, float m_ppg_red, float m_ppg_ir, float m_resp)
 
   try
   {
-    outlet.push_sample(sample);
+    //outlet.push_sample(sample);
   }
   catch(Exception e)
   {
