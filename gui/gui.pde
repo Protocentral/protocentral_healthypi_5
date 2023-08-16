@@ -759,11 +759,11 @@ void ecsProcessData(char rxch)
         CES_Pkt_SpO2_Counter_RED[2] = CES_Pkt_Data_Counter[15];
         CES_Pkt_SpO2_Counter_RED[3] = CES_Pkt_Data_Counter[16];
 
-        float Temp_Value = (float) ((int) CES_Pkt_Data_Counter[17]| CES_Pkt_Data_Counter[18]<<8)/100;                // Temperature
-        int global_RespirationRate = 20;
-        int global_spo2= (int) (CES_Pkt_Data_Counter[19]);
-        int global_HeartRate = 65;
+        float Temp_Value = (float) (((int) CES_Pkt_Data_Counter[17]| CES_Pkt_Data_Counter[18]<<8)/100.00);                // Temperature
         
+        int global_spo2= (int) (CES_Pkt_Data_Counter[19]);
+        int global_HeartRate = (int) (CES_Pkt_Data_Counter[20]);
+        int global_RespirationRate = (int) (CES_Pkt_Data_Counter[21]);
         
         int leadstatus =  CES_Pkt_Data_Counter[19];
       /*  leadstatus &= 0x01; 
@@ -868,8 +868,8 @@ void ecsProcessData(char rxch)
           if (startPlot)
           {
             //global_temp=Temp_Value;
-            Temp_Value=37.2;
-            lblTemp.setText("Temperature: "+Temp_Value+" C");
+            //Temp_Value=37.2;
+            lblTemp.setText("Temperature: "+Temp_Value+" F");
             
           }
           updateCounter=0;
