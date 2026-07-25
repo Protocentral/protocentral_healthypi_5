@@ -1,81 +1,129 @@
-# HealthyPi 5 
+<div align="center">
 
-![HealthyPi 5](docs/images/healthypi5.jpg)
+# HealthyPi 5
 
-Don't have one? You can pre-order now at [Crowd Supply](https://www.crowdsupply.com/protocentral/healthypi-5)
+### The open-source vital signs monitor you can actually build on.
 
-HealthyPi 5 is the latest evolution of the HealthyPi series. It is a robust, feature-rich, open-source development board that allows you to explore many different biosignals with minimal effort. Whether you need a simple monitor for a specific vital sign or a complete health-sensor platform, HealthyPi 5 is an extensible solution to to your health-data challenges. Out of the box, it can handle electrocardiogram (ECG), respiration, photoplethysmography (PPG), oxygen saturation (SpO₂), and body temperature data. And it’s easy to upgrade as well! Using the Qwiic connectors on the Pro-Carrier Board, you can leverage external sensor modules to capture and analyze additional biosignals, such as galvanic skin response (GSR), electroencephalogram (EEG), and electromyogram (EMG) data.
+ECG · Respiration · PPG · SpO₂ · Temperature — streamed live over USB, Bluetooth LE or Wi-Fi
+from a single Raspberry Pi HAT-sized board.
 
-## Features
+[![Buy](https://img.shields.io/badge/Buy-ProtoCentral_Store-e8590c?style=for-the-badge)](https://protocentral.com/product/healthypi-5-vital-signs-monitoring-hat-kit/)
+[![Docs](https://img.shields.io/badge/Read-Documentation-1c7ed6?style=for-the-badge)](https://protocentral.com/product/healthypi-5-vital-signs-monitoring-hat-kit/docs/)
+[![OpenView](https://img.shields.io/badge/Get-OpenView_App-37b24d?style=for-the-badge)](https://github.com/Protocentral/protocentral_openview/releases)
 
-* RP2040 dual-core ARM Cortex M0 microcontroller
-* ESP32C3 RISC-V module with BLE and Wi-Fi support
-* MAX30001 analog front end for ECG and respiration measurement
-* AFE4400 analog front end for PPG
-* MAX30205 temperature sensor via onboard Qwiic/I²C connectors
-* 40-pin Raspberry Pi HAT connector (also used to connect our Display Add-On Module)
-* 1x USB Type-C connector for communication with a computer and programming the RP2040
-* 1x USB Type-C connector for programming and debugging the ESP32 module
-* Onboard MicroSD card slot
-* On-board Li-Ion battery management with charging through USB
+[![Hardware licence: CERN-OHL-P v2](https://img.shields.io/badge/hardware-CERN--OHL--P%20v2-blue)](LICENSE.md)
+[![Software licence: MIT](https://img.shields.io/badge/software-MIT-blue)](LICENSE.md)
+[![OSHW IN000046](https://img.shields.io/badge/OSHW-IN000046-brightgreen)](https://certification.oshwa.org/in000046.html)
 
-## Repository Contents
+<img src="docs/images/healthypi5-board-angled.jpg" alt="HealthyPi 5 rev 5.7 board, angled view showing the dual USB Type-C connectors, ESP32-C3 module, DB9 SpO2 input and 3.5 mm ECG jack" width="700">
 
-* /gui - Processing GUI for HealthyPi 5
-* /hardware - Eagle design files (.brd, .sch, pdfs)
-* /python - Python scripts for HealthyPi 5 (_Work in Progress_)
-* If you're looking for the firmware for the HealthyPi 5, it's located in its own repository [here](https://github.com/Protocentral/protocentral_healthypi_5_firmware).
+</div>
 
-## License Information
+---
 
-This product is open source! Please see the LICENSE.md file for more information.
+## Why HealthyPi 5
 
-## Getting Started
-_Getting Started Guide coming soon..._
+HealthyPi 5 pairs **clinical-grade analog front ends** — the same Maxim and TI parts used in commercial
+patient monitors — with a design that is open all the way down.
 
-## License Information
+|  |  |
+| --- | --- |
+| **Five biosignals, one board** | ECG, respiration, PPG, SpO₂ and temperature simultaneously. |
+| **Lossless by design** | The RP2040's two cores split acquisition from everything else — 128 SPS sampling is guaranteed by the architecture, not by tuning. |
+| **Connect however you like** | USB-C, BLE or Wi-Fi to OpenView — or log to the onboard microSD with no computer attached. |
+| **Genuinely open** | CERN-OHL-P v2 hardware, MIT software, [OSHWA-certified IN000046](https://certification.oshwa.org/in000046.html). Commercial use permitted. |
+| **Built to extend** | Qwiic/I²C connectors add GSR, EEG, EMG or any other sensor. |
+
+<div align="center">
+<img src="docs/images/openview-live-ecg-resp-ppg.png" alt="OpenView desktop app showing live ECG at 125 Hz, respiration at 62 Hz and PPG at 100 Hz streaming from a HealthyPi 5 over Bluetooth LE, with heart rate, SpO2 and respiration rate readouts" width="760">
+<p><sub><b>Live in OpenView</b> — ECG, respiration and PPG over BLE, with recording to disk</sub></p>
+</div>
+
+## What you can measure
+
+| Signal | Front end | Notes |
+| --- | --- | --- |
+| **ECG** | Maxim MAX30001 | 18-bit, 128 SPS, 3-electrode cable included |
+| **Respiration** | Maxim MAX30001 | Bio-impedance, from the same electrodes |
+| **PPG / SpO₂** | TI AFE4400 | 22-bit, red + IR; Nellcor-compatible probe included |
+| **Body temperature** | Maxim MAX30205 | Qwiic/I²C skin probe included |
+| **Anything else** | Your sensor | Qwiic connectors — GSR, EEG, EMG, … |
+
+## Hardware at a glance
+
+- **RP2040** dual-core ARM Cortex-M0+ main MCU, 16 MB flash
+- **ESP32-C3** RISC-V co-processor for Bluetooth LE and Wi-Fi
+- **40-pin Raspberry Pi HAT** connector
+- **2× USB Type-C** — one per MCU
+- **microSD** slot for onboard recording
+- **Li-Ion** battery management with USB charging
+- **75.5 × 56 × 17 mm**
+
+> Board revisions **5.2 through 5.7 are electrically identical** — one pin map serves all of them.
+
+## Get started
+
+**1. Get a board** — [ProtoCentral Store](https://protocentral.com/product/healthypi-5-vital-signs-monitoring-hat-kit/) · [Mouser](https://www.mouser.com/c/?m=ProtoCentral&q=HealthyPi%205) · [Crowd Supply](https://www.crowdsupply.com/protocentral/healthypi-5)
+
+**2. Install [OpenView](https://github.com/Protocentral/protocentral_openview/releases)** — Windows, macOS, Linux, Android or iOS.
+
+**3. Connect** over USB, BLE or Wi-Fi and start streaming. Boards ship pre-flashed.
+
+Then see the [documentation](https://protocentral.com/product/healthypi-5-vital-signs-monitoring-hat-kit/docs/) for electrode placement, wiring and the streaming data format.
+
+<div align="center">
+<img src="docs/images/healthypi5-kit-contents.jpg" alt="HealthyPi 5 kit contents: main board, Nellcor-compatible SpO2 finger probe with DB9 connector, three-electrode ECG cable, Qwiic temperature probe, two 40-pin female headers and twenty single-use 3M ECG electrodes" width="580">
+<p><sub><b>In the kit</b> — board, SpO₂ probe, ECG cable, temperature probe, headers and 20 electrodes</sub></p>
+</div>
+
+## Software & documentation
+
+This repository holds the **hardware design files**. Everything else lives in its own repository:
+
+| | Repository | What it is |
+| --- | --- | --- |
+| **App** | [protocentral_openview](https://github.com/Protocentral/protocentral_openview) | **OpenView** — the main GUI. Flutter app for Windows, macOS, Linux, Android and iOS. [Downloads](https://github.com/Protocentral/protocentral_openview/releases) |
+| **Firmware** (RP2040) | [protocentral_healthypi_5_firmware](https://github.com/Protocentral/protocentral_healthypi_5_firmware) | Arduino firmware and library — tutorial sketches plus the dual-core NEXT firmware. |
+| **Firmware** (ESP32-C3) | [healthybridge-esp32](https://github.com/Protocentral/healthybridge-esp32) | HealthyBridge — wireless co-processor: BLE, Wi-Fi, MQTT, web dashboard. |
+| **Docs** | [protocentral.com/healthypi](https://protocentral.com/healthypi/) | Setup, wiring, streaming formats, troubleshooting. |
+
+> **Upgrading firmware?** The RP2040 and ESP32-C3 firmwares must be updated together — v2 changed the protocol between them.
+
+## What's in this repository
+
+| Path | Contents |
+| --- | --- |
+| [`hardware/`](hardware/) | Eagle `.sch`/`.brd`, BOMs and schematic PDFs — main board revs 5.3–5.7, Pro-Carrier 5.2, ST7796 display add-on 5.2, and enclosure STLs |
+| [`docs/images/`](docs/images/) | Images used in this README |
+| [`archived/`](archived/) | Unmaintained, kept for reference: the old Processing GUI and Python/LSL scripts, both superseded by OpenView |
+
+## Support
+
+Hardware and errata → [issues here](https://github.com/Protocentral/protocentral_healthypi_5/issues). Firmware → [RP2040](https://github.com/Protocentral/protocentral_healthypi_5_firmware/issues) or [ESP32-C3](https://github.com/Protocentral/healthybridge-esp32/issues). App → [OpenView](https://github.com/Protocentral/protocentral_openview/issues). PRs welcome.
+
+> [!IMPORTANT]
+> **HealthyPi 5 is not a medical device.** It is not certified for diagnosis, treatment or any clinical
+> use, and must never be relied on for medical decisions — it is for education, research and development
+> only. When connected to a person, power the board **only** from a battery or a properly isolated supply.
+
+## License
 
 ![License](license_mark.svg)
 
-This product is open source! Both, our hardware and software are open source and licensed under the following licenses:
+| | Licence |
+| --- | --- |
+| **Hardware** (`hardware/`) | [CERN-OHL-P v2](https://ohwr.org/cern_ohl_p_v2.txt) — permissive; you may build and sell products based on this design |
+| **Software** | [MIT](http://opensource.org/licenses/MIT) |
+| **Documentation** | [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) |
 
-Hardware
----------
+Distributed WITHOUT ANY EXPRESS OR IMPLIED WARRANTY. Full terms in [LICENSE.md](LICENSE.md).
 
-**All hardware is released under the [CERN-OHL-P v2](https://ohwr.org/cern_ohl_p_v2.txt)** license.
+---
 
-Copyright CERN 2020.
+<div align="center">
 
-This source describes Open Hardware and is licensed under the CERN-OHL-P v2.
+**Part of the HealthyPi family** — [HealthyPi 5](https://protocentral.com/healthypi/) · [HealthyPi 6](https://www.crowdsupply.com/protocentral/healthypi-6) · [HealthyPi Move](https://protocentral.com/product/healthypi-move/)
 
-You may redistribute and modify this documentation and make products
-using it under the terms of the CERN-OHL-P v2 (https:/cern.ch/cern-ohl).
-This documentation is distributed WITHOUT ANY EXPRESS OR IMPLIED
-WARRANTY, INCLUDING OF MERCHANTABILITY, SATISFACTORY QUALITY
-AND FITNESS FOR A PARTICULAR PURPOSE. Please see the CERN-OHL-P v2
-for applicable conditions
+<sub>Designed and built by <a href="https://protocentral.com">ProtoCentral Electronics</a> — open-source biomedical hardware, from sensor to signal.</sub>
 
-Software
---------
-
-**All software is released under the MIT License(http://opensource.org/licenses/MIT).**
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-Documentation
--------------
-**All documentation is released under [Creative Commons Share-alike 4.0 International](http://creativecommons.org/licenses/by-sa/4.0/).**
-![CC-BY-SA-4.0](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)
-
-You are free to:
-
-* Share — copy and redistribute the material in any medium or format
-* Adapt — remix, transform, and build upon the material for any purpose, even commercially.
-The licensor cannot revoke these freedoms as long as you follow the license terms.
-
-Under the following terms:
-
-* Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
-* ShareAlike — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
-
-Please check [*LICENSE.md*](LICENSE.md) for detailed license descriptions.
+</div>

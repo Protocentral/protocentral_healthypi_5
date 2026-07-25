@@ -4,7 +4,24 @@ License Information
 Hardware
 ---------
 
-**All hardware is released under [Creative Commons Share-alike 4.0 International](http://creativecommons.org/licenses/by-sa/4.0/).**
+**All hardware (everything under `/hardware`) is released under the [CERN Open Hardware Licence Version 2 - Permissive (CERN-OHL-P v2)](https://ohwr.org/cern_ohl_p_v2.txt).**
+
+Copyright CERN 2020.
+
+This source describes Open Hardware and is licensed under the CERN-OHL-P v2.
+
+You may redistribute and modify this documentation and make products
+using it under the terms of the CERN-OHL-P v2 (https://cern.ch/cern-ohl).
+This documentation is distributed WITHOUT ANY EXPRESS OR IMPLIED
+WARRANTY, INCLUDING OF MERCHANTABILITY, SATISFACTORY QUALITY
+AND FITNESS FOR A PARTICULAR PURPOSE. Please see the CERN-OHL-P v2
+for applicable conditions.
+
+
+Documentation
+-------------
+
+**All documentation is released under [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](http://creativecommons.org/licenses/by-sa/4.0/).**
 
 You are free to:
 
@@ -26,11 +43,11 @@ No warranties are given. The license may not give you all of the permissions nec
 Software
 --------
 
-**All software is released under the MIT License(http://opensource.org/licenses/MIT).**
+**All software in this repository (including the archived Processing GUI and Python scripts under `/archived`) is released under the [MIT License](http://opensource.org/licenses/MIT).**
 
 The MIT License (MIT)
 
-Copyright (c) 2019 ProtoCentral
+Copyright (c) 2019-2026 ProtoCentral Electronics
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
