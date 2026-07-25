@@ -23,8 +23,8 @@ from a single Raspberry Pi HAT-sized board.
 
 ## Why HealthyPi 5
 
-HealthyPi 5 pairs **clinical-grade analog front ends** — the same Maxim and TI parts used in commercial
-patient monitors — with a design that is open all the way down.
+HealthyPi 5 pairs **high-precision analog front ends** — 18-bit ECG and 22-bit PPG converters from Maxim
+and TI — with a design that is open all the way down.
 
 |  |  |
 | --- | --- |
